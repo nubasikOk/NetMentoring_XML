@@ -25,7 +25,7 @@ namespace XMLWorker.Parsers
                     FirstName = GetAttributeValue(elem, "firstName"),
                     LastName = GetAttributeValue(elem, "lastName")
                 }).ToList(),
-                RegistrationNumber = int.Parse(GetAttributeValue(element, "name") ?? default(int).ToString()),
+                RegistrationNumber = int.Parse(GetAttributeValue(element, "number") ?? default(int).ToString()),
                 FilingDate = GetDate(GetAttributeValue(element,"filingDate")),
                 PublishDate = GetDate(GetAttributeValue(element, "publishDate")),
                 Country = GetAttributeValue(element, "country"),

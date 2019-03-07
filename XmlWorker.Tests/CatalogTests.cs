@@ -49,7 +49,7 @@ namespace XmlWorker.Tests
         public void Init()
         {
             _catalog = new XMLCatalog();
-            _catalog.AddParsers(new BookParser());
+            _catalog.AddParsers(new BookParser(), new NewspapersParser(), new PatentParser());
             _catalog.AddWriters(new BookWriter());
         }
 

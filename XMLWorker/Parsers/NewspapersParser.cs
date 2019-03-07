@@ -22,7 +22,7 @@ namespace XMLWorker.Parsers
                 City = GetAttributeValue(element, "city"),
                 Publishing = GetAttributeValue(element, "publishing"),
                 Year = int.Parse(GetAttributeValue(element, "year") ?? default(int).ToString()),
-                PagesCount = int.Parse(GetAttributeValue(element, "pagescount") ?? default(int).ToString()),
+                PagesCount = int.Parse(GetAttributeValue(element, "pagesCount") ?? default(int).ToString()),
                 Note = GetAttributeValue(element, "note"),
                 Number = int.Parse(GetAttributeValue(element, "number") ?? default(int).ToString()),
                 Date = GetDate(GetAttributeValue(element, "date")),
