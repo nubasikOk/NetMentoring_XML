@@ -50,11 +50,11 @@ namespace XmlWorker.Tests
         {
             _catalog = new XMLCatalog();
             _catalog.AddParsers(new BookParser(), new NewspapersParser(), new PatentParser());
-            _catalog.AddWriters(new BookWriter());
+            _catalog.AddWriters(new BookWriter(),new NewspapersWriter(), new PatentWriter());
         }
 
         [Test]
-        public void Test_Reader()
+        public void Test_Book_Reader()
         {
             TextReader sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-8""?>" +
                                              "<catalog>" +

@@ -47,6 +47,8 @@
     <Compile Include="Abstract\BaseXmlParser.cs" />
     <Compile Include="Abstract\IXmlElementWriter.cs" />
     <Compile Include="Comparers\BookComparer.cs" />
+    <Compile Include="Comparers\NewspapersComparer.cs" />
+    <Compile Include="Comparers\PatentsComparer.cs" />
     <Compile Include="Entities\Author.cs" />
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\Newspaper.cs" />
