@@ -1,0 +1,6 @@
+C:\Users\Viachaslau_Kitsun\Desktop\NetMentoring_XML\XMLWorker\XMLWorker\obj\Debug\XMLWorker.csprojAssemblyReference.cache
+C:\Users\Viachaslau_Kitsun\Desktop\NetMentoring_XML\XMLWorker\XMLWorker\obj\Debug\XMLWorker.csproj.CoreCompileInputs.cache
+C:\Users\Viachaslau_Kitsun\Desktop\NetMentoring_XML\XMLWorker\XMLWorker\bin\Debug\XMLWorker.dll
+C:\Users\Viachaslau_Kitsun\Desktop\NetMentoring_XML\XMLWorker\XMLWorker\bin\Debug\XMLWorker.pdb
+C:\Users\Viachaslau_Kitsun\Desktop\NetMentoring_XML\XMLWorker\XMLWorker\obj\Debug\XMLWorker.dll
+C:\Users\Viachaslau_Kitsun\Desktop\NetMentoring_XML\XMLWorker\XMLWorker\obj\Debug\XMLWorker.pdb
