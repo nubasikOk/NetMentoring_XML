@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLWorker", "XMLWorker\XMLWorker.csproj", "{50E62A73-887C-466C-BB4C-5B8FF26F0CDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlWorker.Tests", "XmlWorker.Tests\XmlWorker.Tests.csproj", "{816C7B4A-265F-456E-BC5A-63A478DC3F58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{50E62A73-887C-466C-BB4C-5B8FF26F0CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50E62A73-887C-466C-BB4C-5B8FF26F0CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50E62A73-887C-466C-BB4C-5B8FF26F0CDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{816C7B4A-265F-456E-BC5A-63A478DC3F58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{816C7B4A-265F-456E-BC5A-63A478DC3F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{816C7B4A-265F-456E-BC5A-63A478DC3F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{816C7B4A-265F-456E-BC5A-63A478DC3F58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
