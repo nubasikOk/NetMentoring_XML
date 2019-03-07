@@ -5,7 +5,7 @@ using XMLWorker.Entities;
 
 namespace XMLWorker.Comparers
 {
-    class NewspapersComparer : IComparer, IComparer<Newspaper>
+    public class NewspapersComparer : IComparer, IComparer<Newspaper>
     {
         public int Compare(Newspaper x, Newspaper y)
         {

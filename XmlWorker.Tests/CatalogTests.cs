@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using XMLWorker;
@@ -30,6 +31,7 @@ namespace XmlWorker.Tests
                 }
             };
         }
+
         private string GetBookXml()
         {
             return @"<book name=""War and peace"" " +
@@ -43,6 +45,36 @@ namespace XmlWorker.Tests
                             @"<author firstName=""Lev"" lastName=""Tolstoi"" />" +
                        "</authors>" +
                    "</book>";
+        }
+
+        private Newspaper CreateNewspaper()
+        {
+            return new Newspaper
+            {
+                Name = "Evening Grodno",
+                City = "Grodno",
+                Publishing = "Evening Grodno",
+                Year = 2019,
+                PagesCount = 12,
+                ISSN = "1476-4687",
+                Note = "Only latest news.",
+                Number = 3,
+                Date = new DateTime(1905, 5, 16),
+            };
+        }
+
+        private string GetPaperXml()
+        {
+            return "<newspaper name=\"Evening Grodno\" " +
+                       "city=\"Grodno\" " +
+                       "publishing=\"Evening Grodno\" " +
+                       "year=\"2019\" " +
+                       "pagesCount=\"12\" " +
+                       "date=\"05/16/1905\" " +
+                       "issn=\"1476-4687\" " +
+                       "number=\"3\">" +
+                       "<note>Only latest news.</note>" +
+                   "</newspaper>";
         }
 
         [SetUp]
@@ -64,6 +96,25 @@ namespace XmlWorker.Tests
             var books = _catalog.ReadFrom(sr);
 
             CollectionAssert.AreEqual(books, new[] { CreateBook() }, new BooksComparer());
+
+            sr.Dispose();
+
+        }
+
+        [Test]
+        public void Test_Paper_Reader()
+        {
+            TextReader sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-8""?>" +
+                                             "<catalog>" +
+                                             GetPaperXml() +
+                                             "</catalog>");
+
+            var papers = _catalog.ReadFrom(sr);
+            foreach(var paper in papers)
+            {
+                Console.WriteLine((paper as Newspaper).Date.ToShortDateString());
+            }
+            CollectionAssert.AreEqual(papers, new[] { CreateNewspaper() }, new NewspapersComparer());
 
             sr.Dispose();
 

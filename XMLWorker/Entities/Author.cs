@@ -1,5 +1,4 @@
-﻿
-using XMLWorker.Abstract;
+﻿using XMLWorker.Abstract;
 
 namespace XMLWorker.Entities
 {
