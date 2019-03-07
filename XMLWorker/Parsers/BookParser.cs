@@ -16,21 +16,21 @@ namespace XMLWorker.Parsers
             {
                 throw new ArgumentNullException($"{nameof(element)} is null");
             }
-
+           
             Book book = new Book
             {
                 Name = GetAttributeValue(element, "name"),
                 City = GetAttributeValue(element, "city"),
-                Authors = GetElement(element, "authors").Elements("author").Select(elem=> new Author
+                Publishing = GetAttributeValue(element, "publishing"),
+                Year = int.Parse(GetAttributeValue(element, "year") ?? default(int).ToString()),
+                PagesCount = int.Parse(GetAttributeValue(element, "pagesCount") ?? default(int).ToString()),
+                ISBN = GetAttributeValue(element, "isbn"),
+                Note = GetElement(element, "note").Value,
+                Authors = GetElement(element, "authors").Elements("author").Select(elem => new Author
                 {
                     FirstName = GetAttributeValue(elem, "firstName"),
                     LastName = GetAttributeValue(elem, "lastName")
-                }).ToList(),
-                PagesCount = int.Parse(GetAttributeValue(element, "pagesCount") ?? default(int).ToString()),
-                Note = GetElement(element, "note").Value,
-                Publishing= GetAttributeValue(element, "publishing"),
-                Year = int.Parse(GetAttributeValue(element, "year") ?? default(int).ToString()),
-                ISBN = GetAttributeValue(element, "isbn")
+                }).ToList()
             };
             return book;
         }

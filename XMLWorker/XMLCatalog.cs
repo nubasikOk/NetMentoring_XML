@@ -8,7 +8,7 @@ using XMLWorker.Exceptions;
 
 namespace XMLWorker
 {
-    class XMLCatalog
+    public  class XMLCatalog
     {
         private static string _catalogElementName = "catalog";
 

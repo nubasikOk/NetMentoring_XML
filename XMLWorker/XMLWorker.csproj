@@ -46,6 +46,7 @@
     <Compile Include="Abstract\IXmlElementParser.cs" />
     <Compile Include="Abstract\BaseXmlParser.cs" />
     <Compile Include="Abstract\IXmlElementWriter.cs" />
+    <Compile Include="Comparers\BookComparer.cs" />
     <Compile Include="Entities\Author.cs" />
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\Newspaper.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Parsers\NewspapersParser.cs" />
     <Compile Include="Parsers\PatentParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Writers\BookWriter.cs" />
     <Compile Include="XMLCatalog.cs" />
   </ItemGroup>
   <ItemGroup />
