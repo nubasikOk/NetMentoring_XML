@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using XMLWorker.Entities;
+using XMLWorker.Exceptions;
 
 namespace XMLWorker.Comparers
 {
@@ -22,7 +23,8 @@ namespace XMLWorker.Comparers
         public int Compare(object x, object y)
         {
             
-            if (typeof(Book) !=x.GetType() || (typeof(Book)) != y.GetType()) throw new Exception("types mismatch!");
+            if (typeof(Book) !=x.GetType() || (typeof(Book)) != y.GetType())
+                throw new TypeMismatchException($"types mismatch: {x.GetType()} and {y.GetType()} !");
             return Compare(x as Book, y as Book);
             
         }

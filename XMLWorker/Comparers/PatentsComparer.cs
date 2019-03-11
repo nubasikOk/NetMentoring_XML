@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using XMLWorker.Entities;
+using XMLWorker.Exceptions;
+
 namespace XMLWorker.Comparers
 {
     public class PatentsComparer : IComparer, IComparer<Patent>
@@ -20,7 +22,7 @@ namespace XMLWorker.Comparers
         public int Compare(object x, object y)
         {
             if (typeof(Patent) != x.GetType() || (typeof(Patent)) != y.GetType())
-                throw new Exception("types mismatch!");
+                throw new TypeMismatchException($"types mismatch: {x.GetType()} and {y.GetType()} !");
 
             return Compare(x as Patent, y as Patent);
         }

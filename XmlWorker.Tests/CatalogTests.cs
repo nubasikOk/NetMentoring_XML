@@ -7,6 +7,7 @@ using NUnit.Framework;
 using XMLWorker;
 using XMLWorker.Comparers;
 using XMLWorker.Entities;
+using XMLWorker.Exceptions;
 using XMLWorker.Interfaces;
 using XMLWorker.Parsers;
 using XMLWorker.Writers;
@@ -131,8 +132,6 @@ namespace XmlWorker.Tests
                 var books = _catalog.ReadFrom(sr);
 
                 CollectionAssert.AreEqual(books, new[] { CreateBook() }, new BooksComparer());
-
-                sr.Dispose();
             }
         }
        
@@ -148,8 +147,6 @@ namespace XmlWorker.Tests
                 var papers = _catalog.ReadFrom(sr);
 
                 CollectionAssert.AreEqual(papers, new[] { CreateNewspaper() }, new NewspapersComparer());
-
-                sr.Dispose();
             }
                 
 
@@ -166,8 +163,6 @@ namespace XmlWorker.Tests
                 var patents = _catalog.ReadFrom(sr);
 
                 CollectionAssert.AreEqual(patents, new[] { CreatePatent() }, new PatentsComparer());
-
-                sr.Dispose();
             }
         }
 
@@ -186,8 +181,6 @@ namespace XmlWorker.Tests
                 Assert.IsTrue(new PatentsComparer().Compare(entities[0], CreatePatent()) == 0);
                 Assert.IsTrue(new BooksComparer().Compare(entities[1], CreateBook()) == 0);
                 Assert.IsTrue(new NewspapersComparer().Compare(entities[2], CreateNewspaper()) == 0);
-
-                sr.Dispose();
             }
         }
 
@@ -214,7 +207,7 @@ namespace XmlWorker.Tests
                     "</catalog>";
 
                 _catalog.WriteTo(sw, entities);
-                sw.Dispose();
+
                 Assert.AreEqual(expectedResult, actualResult.ToString());
             }
                 
@@ -224,23 +217,15 @@ namespace XmlWorker.Tests
         
         public void Test_NotCorrectObject_IntoComparer_Exception()
         {
+            var comparer = new BooksComparer();
             using (var sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-16""?>" +
                                              "<catalog>" +
                                              GetBookXml() +
                                              "</catalog>"))
             {
                 var books = _catalog.ReadFrom(sr);
-                var exception = new Exception();
-                try
-                {
-                    CollectionAssert.AreEqual(books, new[] { CreateNewspaper() }, new BooksComparer());
-                }
-                catch (Exception exc)
-                {
-                    exception = exc;
-                }
-                Assert.IsNotNull(exception);
-                sr.Dispose();
+               
+                Assert.Throws<TypeMismatchException>(()=> comparer.Compare(books, CreateNewspaper()));
             }
         }
     }
