@@ -26,7 +26,7 @@ namespace XMLWorker.Parsers
                 PagesCount = GetAttributeValue(element, "pagesCount").Convert<int>(),
                 Note = GetElement(element, "note").Value,
                 Number = GetAttributeValue(element, "number").Convert<int>(),
-                Date = GetDate(GetAttributeValue(element, "date")),
+                Date = GetAttributeValue(element, "date").Convert<DateTime>(),
                 ISSN = GetAttributeValue(element, "issn")
             };
 
