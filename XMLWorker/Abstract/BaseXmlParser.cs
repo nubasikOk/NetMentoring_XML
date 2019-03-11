@@ -38,8 +38,7 @@ namespace XMLWorker.Abstract
                 return default(DateTime);
             }
 
-            return DateTime.ParseExact(dateInvariant, CultureInfo.InvariantCulture.DateTimeFormat.ShortDatePattern,
-                CultureInfo.InvariantCulture.DateTimeFormat);
+            return Convert.ToDateTime(dateInvariant);
         }
     }
 }

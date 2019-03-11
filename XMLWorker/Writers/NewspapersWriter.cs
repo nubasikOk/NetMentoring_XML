@@ -25,10 +25,9 @@ namespace XMLWorker.Writers
             AddAttribute(element, "publishing", newsPaper.Publishing);
             AddAttribute(element, "year", newsPaper.Year.ToString());
             AddAttribute(element, "pagesCount", newsPaper.PagesCount.ToString());
-            AddAttribute(element, "date", newsPaper.Date
-                .ToString(CultureInfo.InvariantCulture.DateTimeFormat.ShortDatePattern, CultureInfo.InvariantCulture));
             AddAttribute(element, "issn", newsPaper.ISSN, true);
             AddAttribute(element, "number", newsPaper.Number.ToString());
+            AddAttribute(element, "date", Convert.ToDateTime(newsPaper.Date).ToShortDateString());
             AddElement(element, "note", newsPaper.Note);
             element.WriteTo(xmlWriter);
         }

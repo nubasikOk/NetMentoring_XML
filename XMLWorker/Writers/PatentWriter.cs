@@ -22,10 +22,10 @@ namespace XMLWorker.Writers
             XElement element = new XElement("patent");
             AddAttribute(element, "name", patent.Name);
             AddAttribute(element, "number", patent.RegistrationNumber.ToString());
-            AddAttribute(element, "filingDate", patent.FilingDate.ToString());
-            AddAttribute(element, "publishDate", patent.PublishDate.ToString());
-            AddAttribute(element, "pagesCount", patent.PagesCount.ToString());
+            AddAttribute(element, "filingDate", Convert.ToDateTime(patent.FilingDate).ToShortDateString());
+            AddAttribute(element, "publishDate", Convert.ToDateTime(patent.PublishDate).ToShortDateString());
             AddAttribute(element, "country", patent.Country);
+            AddAttribute(element, "pagesCount", patent.PagesCount.ToString());
             AddElement(element, "note", patent.Note);
             AddElement(element, "creators",
                 patent.Creators?.Select(a => new XElement("creator",

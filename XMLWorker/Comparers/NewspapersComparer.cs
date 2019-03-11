@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using XMLWorker.Entities;
@@ -9,6 +10,7 @@ namespace XMLWorker.Comparers
     {
         public int Compare(Newspaper x, Newspaper y)
         {
+            
             return x.PagesCount == y.PagesCount
                    && x.Name == y.Name
                    && x.Number == y.Number

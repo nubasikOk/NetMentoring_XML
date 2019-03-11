@@ -23,7 +23,7 @@ namespace XMLWorker.Parsers
                 Publishing = GetAttributeValue(element, "publishing"),
                 Year = int.Parse(GetAttributeValue(element, "year") ?? default(int).ToString()),
                 PagesCount = int.Parse(GetAttributeValue(element, "pagesCount") ?? default(int).ToString()),
-                Note = GetAttributeValue(element, "note"),
+                Note = GetElement(element, "note").Value,
                 Number = int.Parse(GetAttributeValue(element, "number") ?? default(int).ToString()),
                 Date = GetDate(GetAttributeValue(element, "date")),
                 ISSN = GetAttributeValue(element, "issn")

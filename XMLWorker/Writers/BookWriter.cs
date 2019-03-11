@@ -29,8 +29,8 @@ namespace XMLWorker.Writers
             AddElement(element, "note", book.Note);
             AddElement(element, "authors",
                 book.Authors?.Select(a => new XElement("author",
-                    new XAttribute("firstname", a.FirstName),
-                    new XAttribute("lastname", a.LastName)
+                    new XAttribute("firstName", a.FirstName),
+                    new XAttribute("lastName", a.LastName)
                 ))
             );
 

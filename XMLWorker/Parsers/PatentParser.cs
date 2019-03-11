@@ -30,7 +30,7 @@ namespace XMLWorker.Parsers
                 PublishDate = GetDate(GetAttributeValue(element, "publishDate")),
                 Country = GetAttributeValue(element, "country"),
                 PagesCount = int.Parse(GetAttributeValue(element, "pagesCount") ?? default(int).ToString()),
-                Note = GetAttributeValue(element, "note")
+                Note = GetElement(element, "note").Value
             };
 
             return patent;
