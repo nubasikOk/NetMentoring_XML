@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using XMLWorker.Abstract;
+using XMLWorker.Interfaces;
 
 namespace XMLWorker.Entities
 {

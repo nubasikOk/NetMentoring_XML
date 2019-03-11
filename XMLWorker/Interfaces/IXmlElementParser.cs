@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace XMLWorker.Abstract
+namespace XMLWorker.Interfaces
 {
     public interface IXmlElementParser 
     {

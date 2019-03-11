@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using XMLWorker;
-using XMLWorker.Abstract;
 using XMLWorker.Comparers;
 using XMLWorker.Entities;
+using XMLWorker.Interfaces;
 using XMLWorker.Parsers;
 using XMLWorker.Writers;
 
@@ -123,117 +123,125 @@ namespace XmlWorker.Tests
         [Test]
         public void Test_Book_Reader()
         {
-            TextReader sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-16""?>" +
+            using (var sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-16""?>" +
                                              "<catalog>" +
                                              GetBookXml() +
-                                             "</catalog>");
+                                             "</catalog>"))
+            {
+                var books = _catalog.ReadFrom(sr);
 
-            var books = _catalog.ReadFrom(sr);
+                CollectionAssert.AreEqual(books, new[] { CreateBook() }, new BooksComparer());
 
-            CollectionAssert.AreEqual(books, new[] { CreateBook() }, new BooksComparer());
-
-            sr.Dispose();
-
+                sr.Dispose();
+            }
         }
        
 
         [Test]
         public void Test_Paper_Reader()
         {
-            TextReader sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-16""?>" +
+            using (var sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-16""?>" +
                                              "<catalog>" +
                                              GetPaperXml() +
-                                             "</catalog>");
+                                             "</catalog>"))
+            {
+                var papers = _catalog.ReadFrom(sr);
 
-            var papers = _catalog.ReadFrom(sr);
-            
-               
-           
-            CollectionAssert.AreEqual(papers, new[] { CreateNewspaper() }, new NewspapersComparer());
+                CollectionAssert.AreEqual(papers, new[] { CreateNewspaper() }, new NewspapersComparer());
 
-            sr.Dispose();
+                sr.Dispose();
+            }
+                
 
         }
 
         [Test]
         public void Test_Patent_Reader()
         {
-            TextReader sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-16""?>" +
+            using (var sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-16""?>" +
                                              "<catalog>" +
                                              GetPatentXml() +
-                                             "</catalog>");
+                                             "</catalog>"))
+            {
+                var patents = _catalog.ReadFrom(sr);
 
-            var patents = _catalog.ReadFrom(sr);
+                CollectionAssert.AreEqual(patents, new[] { CreatePatent() }, new PatentsComparer());
 
-            CollectionAssert.AreEqual(patents, new[] { CreatePatent() }, new PatentsComparer());
-
-            sr.Dispose();
-
+                sr.Dispose();
+            }
         }
 
         [Test]
         public void Test_MixedEntities_Read()
         {
-            TextReader sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-16""?>" +
+            using (var sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-16""?>" +
                                              "<catalog>" +
                                                 GetPatentXml() +
                                                 GetBookXml() +
                                                 GetPaperXml() +
-                                             "</catalog>");
+                                             "</catalog>"))
+            {
+                var entities = _catalog.ReadFrom(sr).ToList();
 
-            var entities = _catalog.ReadFrom(sr).ToList();
+                Assert.IsTrue(new PatentsComparer().Compare(entities[0], CreatePatent()) == 0);
+                Assert.IsTrue(new BooksComparer().Compare(entities[1], CreateBook()) == 0);
+                Assert.IsTrue(new NewspapersComparer().Compare(entities[2], CreateNewspaper()) == 0);
 
-            Assert.IsTrue(new PatentsComparer().Compare(entities[0], CreatePatent()) == 0);
-            Assert.IsTrue(new BooksComparer().Compare(entities[1], CreateBook()) == 0);
-            Assert.IsTrue(new NewspapersComparer().Compare(entities[2], CreateNewspaper()) == 0);
-
-            sr.Dispose();
+                sr.Dispose();
+            }
         }
 
         [Test]
         public void Test_MixedEntities_Write()
         {
-            StringBuilder actualResult = new StringBuilder();
-            StringWriter sw = new StringWriter(actualResult);
-            var book = CreateBook();
-            var newspaper = CreateNewspaper();
-            var patent = CreatePatent();
-            var entities = new IEntity[]
+            var actualResult = new StringBuilder();
+            using (var sw = new StringWriter(actualResult))
             {
+                var book = CreateBook();
+                var newspaper = CreateNewspaper();
+                var patent = CreatePatent();
+                var entities = new IEntity[]
+                {
                 book,
                 newspaper,
                 patent
-            };
-            string expectedResult = @"<?xml version=""1.0"" encoding=""utf-16""?>" +
-                "<catalog>" +
-                    GetBookXml()+
-                    GetPaperXml()+
-                    GetPatentXml()+
-                "</catalog>";
+                };
+                string expectedResult = @"<?xml version=""1.0"" encoding=""utf-16""?>" +
+                    "<catalog>" +
+                        GetBookXml() +
+                        GetPaperXml() +
+                        GetPatentXml() +
+                    "</catalog>";
 
-            _catalog.WriteTo(sw, entities);
-            sw.Dispose();
-            Assert.AreEqual(expectedResult, actualResult.ToString());
+                _catalog.WriteTo(sw, entities);
+                sw.Dispose();
+                Assert.AreEqual(expectedResult, actualResult.ToString());
+            }
+                
         }
 
         [Test]
         
         public void Test_NotCorrectObject_IntoComparer_Exception()
         {
-            TextReader sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-16""?>" +
+            using (var sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-16""?>" +
                                              "<catalog>" +
                                              GetBookXml() +
-                                             "</catalog>");
-
-            var books = _catalog.ReadFrom(sr);
-
-            Assert.Throws<NullReferenceException>(()=>
-            CollectionAssert.AreEqual(books, new[] { CreateNewspaper() }, new BooksComparer()
-            ));
-
-            sr.Dispose();
-
+                                             "</catalog>"))
+            {
+                var books = _catalog.ReadFrom(sr);
+                var exception = new Exception();
+                try
+                {
+                    CollectionAssert.AreEqual(books, new[] { CreateNewspaper() }, new BooksComparer());
+                }
+                catch (Exception exc)
+                {
+                    exception = exc;
+                }
+                Assert.IsNotNull(exception);
+                sr.Dispose();
+            }
         }
-
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace XMLWorker.Abstract
+namespace XMLWorker.Interfaces
 {
     public interface IEntity
     {

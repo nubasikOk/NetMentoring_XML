@@ -3,8 +3,9 @@ using System.Globalization;
 using System.Xml;
 using System.Xml.Linq;
 using XMLWorker.Exceptions;
+using XMLWorker.Interfaces;
 
-namespace XMLWorker.Abstract
+namespace XMLWorker.Writers
 {
     public abstract class BaseXmlWriter : IXmlElementWriter
     {

@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
-using XMLWorker.Abstract;
 using XMLWorker.Entities;
+using XMLWorker.Interfaces;
 
 namespace XMLWorker.Writers
 {
@@ -13,13 +13,13 @@ namespace XMLWorker.Writers
 
         public override void WriteEntity(XmlWriter xmlWriter, IEntity entity)
         {
-            Book book = entity as Book;
+            var book = entity as Book;
             if (book.IsEmpty())
             {
                 throw new ArgumentException($"provided {nameof(entity)} is null or not of type {nameof(Book)}");
             }
 
-            XElement element = new XElement("book");
+            var element = new XElement("book");
             AddAttribute(element, "name", book.Name);
             AddAttribute(element, "city", book.City);
             AddAttribute(element, "publishing", book.Publishing);

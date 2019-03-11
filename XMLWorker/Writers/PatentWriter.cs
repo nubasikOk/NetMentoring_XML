@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
-using XMLWorker.Abstract;
 using XMLWorker.Entities;
+using XMLWorker.Interfaces;
 
 namespace XMLWorker.Writers
 {
@@ -13,13 +13,13 @@ namespace XMLWorker.Writers
 
         public override void WriteEntity(XmlWriter xmlWriter, IEntity entity)
         {
-            Patent patent = entity as Patent;
+            var patent = entity as Patent;
             if (patent.IsEmpty())
             {
                 throw new ArgumentException($"provided {nameof(entity)} is null or not of type {nameof(Patent)}");
             }
 
-            XElement element = new XElement("patent");
+            var element = new XElement("patent");
             AddAttribute(element, "name", patent.Name);
             AddAttribute(element, "number", patent.RegistrationNumber.ToString());
             AddAttribute(element, "filingDate", Convert.ToDateTime(patent.FilingDate).ToShortDateString());

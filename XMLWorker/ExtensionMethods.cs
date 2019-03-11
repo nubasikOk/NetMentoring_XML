@@ -1,4 +1,6 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.ComponentModel;
+using System.Xml.Linq;
 
 namespace XMLWorker
 {
@@ -22,6 +24,24 @@ namespace XMLWorker
         public static bool IsEmpty(this object value)
         {
             return value==null;
+        }
+
+        public static T Convert<T>(this string input)
+        {
+            try
+            {
+                var converter = TypeDescriptor.GetConverter(typeof(T));
+                if (converter != null)
+                {
+                   
+                    return (T)converter.ConvertFromString(input);
+                }
+                return default(T);
+            }
+            catch (NotSupportedException)
+            {
+                return default(T);
+            }
         }
     }
 }

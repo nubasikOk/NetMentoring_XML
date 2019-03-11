@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml;
 
-namespace XMLWorker.Abstract
+namespace XMLWorker.Interfaces
 {
     public interface IXmlElementWriter
     {

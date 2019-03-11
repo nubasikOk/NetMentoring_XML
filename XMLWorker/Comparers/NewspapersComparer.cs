@@ -23,6 +23,9 @@ namespace XMLWorker.Comparers
 
         public int Compare(object x, object y)
         {
+            if (typeof(Newspaper) != x.GetType() || (typeof(Newspaper)) != y.GetType())
+                throw new Exception("types mismatch!");
+
             return Compare(x as Newspaper, y as Newspaper);
         }
     }

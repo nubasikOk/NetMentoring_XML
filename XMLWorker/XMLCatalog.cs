@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using XMLWorker.Abstract;
 using XMLWorker.Exceptions;
+using XMLWorker.Interfaces;
 
 namespace XMLWorker
 {
@@ -39,7 +39,7 @@ namespace XMLWorker
 
         public IEnumerable<IEntity> ReadFrom(TextReader input)
         {
-            using (XmlReader xmlReader = XmlReader.Create(input, new XmlReaderSettings
+            using (var xmlReader = XmlReader.Create(input, new XmlReaderSettings
             {
                 IgnoreWhitespace = true,
                 IgnoreComments = true
@@ -69,7 +69,7 @@ namespace XMLWorker
 
         public void WriteTo(TextWriter output, IEnumerable<IEntity> catalogEntities)
         {
-            using (XmlWriter xmlWriter = XmlWriter.Create(output, new XmlWriterSettings()))
+            using (var xmlWriter = XmlWriter.Create(output, new XmlWriterSettings()))
             {
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement(_catalogElementName);

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
-using XMLWorker.Abstract;
 using XMLWorker.Entities;
+using XMLWorker.Interfaces;
 
 namespace XMLWorker.Parsers
 {
@@ -17,13 +17,13 @@ namespace XMLWorker.Parsers
                 throw new ArgumentNullException($"{nameof(element)} is null");
             }
            
-            Book book = new Book
+            var book = new Book
             {
                 Name = GetAttributeValue(element, "name"),
                 City = GetAttributeValue(element, "city"),
                 Publishing = GetAttributeValue(element, "publishing"),
-                Year = int.Parse(GetAttributeValue(element, "year") ?? default(int).ToString()),
-                PagesCount = int.Parse(GetAttributeValue(element, "pagesCount") ?? default(int).ToString()),
+                Year = GetAttributeValue(element, "year").Convert<int>(),
+                PagesCount = GetAttributeValue(element, "pagesCount").Convert<int>(),
                 ISBN = GetAttributeValue(element, "isbn"),
                 Note = GetElement(element, "note").Value,
                 Authors = GetElement(element, "authors").Elements("author").Select(elem => new Author

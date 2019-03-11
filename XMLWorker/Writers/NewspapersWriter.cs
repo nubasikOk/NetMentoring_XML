@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Globalization;
 using System.Xml;
 using System.Xml.Linq;
-using XMLWorker.Abstract;
 using XMLWorker.Entities;
+using XMLWorker.Interfaces;
 
 namespace XMLWorker.Writers
 {
@@ -13,13 +12,13 @@ namespace XMLWorker.Writers
 
         public override void WriteEntity(XmlWriter xmlWriter, IEntity entity)
         {
-            Newspaper newsPaper = entity as Newspaper;
+            var newsPaper = entity as Newspaper;
             if (newsPaper.IsEmpty())
             {
                 throw new ArgumentException($"provided {nameof(entity)} is null or not of type {nameof(Newspaper)}");
             }
 
-            XElement element = new XElement("newspaper");
+            var element = new XElement("newspaper");
             AddAttribute(element, "name", newsPaper.Name, true);
             AddAttribute(element, "city", newsPaper.City);
             AddAttribute(element, "publishing", newsPaper.Publishing);

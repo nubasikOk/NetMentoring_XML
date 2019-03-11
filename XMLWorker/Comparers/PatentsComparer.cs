@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using XMLWorker.Entities;
 namespace XMLWorker.Comparers
@@ -18,6 +19,9 @@ namespace XMLWorker.Comparers
 
         public int Compare(object x, object y)
         {
+            if (typeof(Patent) != x.GetType() || (typeof(Patent)) != y.GetType())
+                throw new Exception("types mismatch!");
+
             return Compare(x as Patent, y as Patent);
         }
     }

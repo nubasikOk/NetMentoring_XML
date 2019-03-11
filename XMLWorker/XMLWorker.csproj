@@ -41,11 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\BaseXmlWriter.cs" />
-    <Compile Include="Abstract\IEntity.cs" />
-    <Compile Include="Abstract\IXmlElementParser.cs" />
-    <Compile Include="Abstract\BaseXmlParser.cs" />
-    <Compile Include="Abstract\IXmlElementWriter.cs" />
+    <Compile Include="Writers\BaseXmlWriter.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Interfaces\IXmlElementParser.cs" />
+    <Compile Include="Parsers\BaseXmlParser.cs" />
+    <Compile Include="Interfaces\IXmlElementWriter.cs" />
     <Compile Include="Comparers\BookComparer.cs" />
     <Compile Include="Comparers\NewspapersComparer.cs" />
     <Compile Include="Comparers\PatentsComparer.cs" />
@@ -58,7 +58,7 @@
     <Compile Include="Exceptions\MandatoryElementMissedException.cs" />
     <Compile Include="Exceptions\UnknownElementException.cs" />
     <Compile Include="Exceptions\XMLWorkerSystemExcepttion.cs" />
-    <Compile Include="Abstract\ExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Parsers\BookParser.cs" />
     <Compile Include="Parsers\NewspapersParser.cs" />
     <Compile Include="Parsers\PatentParser.cs" />

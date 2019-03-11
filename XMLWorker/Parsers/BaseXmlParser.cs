@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Globalization;
 using System.Xml.Linq;
 using XMLWorker.Exceptions;
+using XMLWorker.Interfaces;
 
-namespace XMLWorker.Abstract
+namespace XMLWorker.Parsers
 {
     public abstract class BaseXmlParser : IXmlElementParser
     {
