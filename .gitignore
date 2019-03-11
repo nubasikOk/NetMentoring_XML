@@ -4,3 +4,8 @@
 
 /.vs/XMLWorker/v15/Server/sqlite3
 /.vs/XMLWorker/v15
+/XMLWorker/bin
+/XMLWorker/obj
+/XMLWorker.Tests/bin
+/XMLWorker.Tests/obj
+/packages
