@@ -216,5 +216,24 @@ namespace XmlWorker.Tests
             Assert.AreEqual(expectedResult, actualResult.ToString());
         }
 
+        [Test]
+        
+        public void Test_NotCorrectObject_IntoComparer_Exception()
+        {
+            TextReader sr = new StringReader(@"<?xml version=""1.0"" encoding=""utf-16""?>" +
+                                             "<catalog>" +
+                                             GetBookXml() +
+                                             "</catalog>");
+
+            var books = _catalog.ReadFrom(sr);
+
+            Assert.Throws<NullReferenceException>(()=>
+            CollectionAssert.AreEqual(books, new[] { CreateNewspaper() }, new BooksComparer()
+            ));
+
+            sr.Dispose();
+
+        }
+
     }
 }
