@@ -26,8 +26,8 @@ namespace XMLWorker.Parsers
                     LastName = GetAttributeValue(elem, "lastName")
                 }).ToList(),
                 RegistrationNumber = GetAttributeValue(element, "number").Convert<int>(),
-                FilingDate = GetDate(GetAttributeValue(element,"filingDate")),
-                PublishDate = GetDate(GetAttributeValue(element, "publishDate")),
+                FilingDate = GetAttributeValue(element,"filingDate").Convert<DateTime>(),
+                PublishDate = GetAttributeValue(element, "publishDate").Convert<DateTime>(),
                 Country = GetAttributeValue(element, "country"),
                 PagesCount = GetAttributeValue(element, "pagesCount").Convert<int>(),
                 Note = GetElement(element, "note").Value
